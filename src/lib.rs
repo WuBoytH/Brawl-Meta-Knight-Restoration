@@ -8,10 +8,10 @@
 pub mod table_const;
 mod common;
 mod metaknight;
+pub mod singletons;
 
 #[skyline::main(name = "brawl_mk")]
 pub fn main() {
     common::install();
     metaknight::install();
-    
 }
