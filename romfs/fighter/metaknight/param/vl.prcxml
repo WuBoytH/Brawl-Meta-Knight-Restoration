@@ -120,6 +120,7 @@
   </list>
   <list hash="param_special_s">
     <struct index="0">
+      <float hash="rush_rot_speed_max">4</float>
       <float hash="guard_speed_mul">1</float>
       <float hash="fall_x_mul">1</float>
     </struct>
