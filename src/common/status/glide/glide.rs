@@ -250,6 +250,10 @@ unsafe extern "C" fn status_exec_glide(fighter: &mut L2CFighterCommon) -> L2CVal
     WorkModule::set_float(fighter.module_accessor, power, *FIGHTER_STATUS_GLIDE_WORK_FLOAT_POWER);
     MotionModule::set_frame(fighter.module_accessor, 90.0 - angle, false);
     WorkModule::set_float(fighter.module_accessor, angle, *FIGHTER_STATUS_GLIDE_WORK_FLOAT_ANGLE);
+    let kind = fighter.global_table[0x2].get_i32();
+    if kind == *FIGHTER_KIND_METAKNIGHT {
+        SoundModule::set_se_pitch_ratio(fighter.module_accessor, Hash40::new("se_metaknight_glide_loop"), 1.0 + angle * -0.0035);
+    }
     0.into()
 }
 
