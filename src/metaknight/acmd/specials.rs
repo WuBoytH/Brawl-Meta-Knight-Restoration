@@ -281,7 +281,7 @@ unsafe fn metaknight_speciallw(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
+        macros::REVERSE_LR(fighter);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
@@ -317,7 +317,7 @@ unsafe fn metaknight_specialairlw(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
+        macros::REVERSE_LR(fighter);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
@@ -354,7 +354,6 @@ unsafe fn metaknight_speciallwf(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
@@ -390,7 +389,6 @@ unsafe fn metaknight_specialairlwf(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
@@ -427,7 +425,7 @@ unsafe fn metaknight_speciallwb(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
+        macros::REVERSE_LR(fighter);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
@@ -463,7 +461,7 @@ unsafe fn metaknight_specialairlwb(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
-        PostureModule::lr(fighter.module_accessor);
+        macros::REVERSE_LR(fighter);
         fighter.clear_lua_stack();
         lua_args!(fighter, FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE);
         if sv_animcmd::IS_EXIST_ARTICLE(fighter.lua_state_agent) {
