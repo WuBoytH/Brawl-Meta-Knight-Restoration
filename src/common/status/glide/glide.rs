@@ -104,6 +104,20 @@ mod KineticUtility {
     }
 }
 
+#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE_START, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
+pub unsafe fn status_init_glide_start(fighter: &mut L2CFighterCommon) -> L2CValue {
+    let params = GlideParams::get(fighter);
+    let gravity = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY) as *mut smash::app::KineticEnergy;
+    let motion = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION) as *mut smash::app::KineticEnergy;
+    let lr = PostureModule::lr(fighter.module_accessor);
+
+    KineticModule::change_kinetic(fighter.module_accessor, *FIGHTER_KINETIC_TYPE_GLIDE_START);
+    smash::app::lua_bind::KineticEnergy::reset_energy(gravity, *ENERGY_GRAVITY_RESET_TYPE_GLIDE_START, &Vector2f{x: 0.0, y: -params.gravity_start}, &Vector3f{x: 0.0, y: -params.gravity_start, z: 0.0}, fighter.module_accessor);
+    smash::app::lua_bind::KineticEnergy::reset_energy(motion, *ENERGY_GRAVITY_RESET_TYPE_GLIDE_START, &Vector2f{x: params.speed_mul_start * lr, y: 0.0}, &Vector3f{x: params.speed_mul_start * lr, y: 0.0, z: 0.0}, fighter.module_accessor);
+    KineticUtility::reset_enable_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_STOP, *ENERGY_STOP_RESET_TYPE_GLIDE_START, Vector2f{x: 0.0, y: params.v_glide_start}, Vector3f{x: 0.0, y: params.v_glide_start, z: 0.0});
+    0.into()
+}
+
 #[skyline::hook(replace = L2CFighterCommon_status_GlideStart)]
 pub unsafe fn status_glidestart(fighter: &mut L2CFighterCommon) -> L2CValue {
     ControlModule::reset_trigger(fighter.module_accessor);
@@ -280,6 +294,7 @@ fn nro_hook(info: &skyline::nro::NroInfo) {
 pub fn install() {
     skyline::nro::add_hook(nro_hook);
     install_status_scripts!(
+        status_init_glide_start,
         status_init_glide,
         status_exec_glide
     );
