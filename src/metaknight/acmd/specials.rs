@@ -100,41 +100,70 @@ unsafe fn metaknight_specialairsfinish(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialhi", category = ACMD_GAME )]
-unsafe fn metaknight_specialhi(fighter: &mut L2CAgentBase) {
-    frame(fighter.lua_state_agent, 5.0);
+#[acmd_script(//SpecialHi
+    agent = "metaknight", 
+    script = "sound_specialhi", 
+    category = ACMD_SOUND, 
+    low_priority )]
+unsafe fn sound_metaknight_specialhi(fighter: &mut L2CAgentBase) {
+    frame(fighter.lua_state_agent, 7.0);
     if macros::is_excute(fighter) {
-        HitModule::set_whole(fighter.module_accessor, HitStatus(*HIT_STATUS_XLU), 0);
+        macros::STOP_SE(fighter, Hash40::new("se_metaknight_dash_start"));
+        macros::PLAY_SE(fighter, Hash40::new("se_metaknight_special_h01"));
+        macros::PLAY_STATUS(fighter, Hash40::new("vc_metaknight_special_h01"));
+    }
+    frame(fighter.lua_state_agent, 13.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_h02"));
+    }
+}
+
+#[acmd_script(//SpecialHi
+    agent = "metaknight", 
+    script = "expression_specialhi", 
+    category = ACMD_EXPRESSION, 
+    low_priority )]
+unsafe fn expression_metaknight_specialhi(fighter: &mut L2CAgentBase) {
+    if macros::is_excute(fighter) {
+        AttackModule::set_attack_reference_joint_id(fighter.module_accessor, Hash40::new("haver"), AttackDirectionAxis(*ATTACK_DIRECTION_Z), AttackDirectionAxis(*ATTACK_DIRECTION_Y), AttackDirectionAxis(*ATTACK_DIRECTION_X));
+        VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_normal") as i64);
     }
     frame(fighter.lua_state_agent, 6.0);
     if macros::is_excute(fighter) {
-        WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_SUPER_JUMP_PUNCH_FLAG_MOVE_TRANS);
+        ControlModule::set_rumble(fighter.module_accessor, Hash40::new("rbkind_nohitm"), 0, false, *BATTLE_OBJECT_ID_INVALID as u32);
     }
     frame(fighter.lua_state_agent, 8.0);
     if macros::is_excute(fighter) {
-        HitModule::set_whole(fighter.module_accessor, HitStatus(*HIT_STATUS_NORMAL), 0);
-        notify_event_msc_cmd!(fighter, Hash40::new_raw(0x2127e37c07), *GROUND_CLIFF_CHECK_KIND_ALWAYS_BOTH_SIDES);
-        macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 9.0, 70, 80, 0, 90, 6.8, 0.0, 12.0, 12.0, None, None, None, 1.5, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
-        macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 9.0, 80, 80, 0, 90, 6.8, 0.0, 0.0, 12.0, Some(0.0), Some(0.0), Some(12.0), 1.5, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
+        macros::RUMBLE_HIT(fighter, Hash40::new("rbkind_slashm"), 0);
+        VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_wing") as i64);
     }
-    frame(fighter.lua_state_agent, 10.0);
+    frame(fighter.lua_state_agent, 20.0);
     if macros::is_excute(fighter) {
-        macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 6.0, 80, 30, 0, 70, 6.0, 0.0, 14.0, 12.0, None, None, None, 1.5, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
-        macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 6.0, 80, 30, 0, 70, 6.0, 0.0, 2.0, 12.0, None, None, None, 1.5, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
-        AttackModule::clear(fighter.module_accessor, 2, false);
-        AttackModule::clear(fighter.module_accessor, 3, false);
+        ControlModule::set_rumble(fighter.module_accessor, Hash40::new("rbkind_nohitm"), 0, false, *BATTLE_OBJECT_ID_INVALID as u32);
     }
-    frame(fighter.lua_state_agent, 13.0);
+}
+
+#[acmd_script( agent = "metaknight", script = "game_specialhiloop", category = ACMD_GAME )]
+unsafe fn metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
+    if macros::is_excute(fighter) {
+        WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_SUPER_JUMP_PUNCH_FLAG_MOVE_TRANS);
+        macros::ATTACK(fighter, 0, 0, Hash40::new("body"), 9.0, 30, 60, 0, 90, 7.0, 0.0, 0.0, 4.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
+        macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 9.0, 30, 60, 0, 90, 7.0, 0.0, 4.0, 4.0, Some(0.0), Some(4.0), Some(20.0), 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
+    }
+    frame(fighter.lua_state_agent, 7.0);
+    if macros::is_excute(fighter) {
+        notify_event_msc_cmd!(fighter, Hash40::new_raw(0x2127e37c07), *GROUND_CLIFF_CHECK_KIND_ALWAYS_BOTH_SIDES);
+        macros::ATTACK(fighter, 0, 0, Hash40::new("body"), 5.0, 361, 80, 0, 30, 3.0, 0.0, 0.0, 0.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
+        macros::ATTACK(fighter, 1, 0, Hash40::new("haver"), 5.0, 361, 80, 0, 30, 3.0, 0.0, 4.0, 4.0, Some(0.0), Some(20.0), Some(4.0), 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
+    }
+    frame(fighter.lua_state_agent, 5.0);
     if macros::is_excute(fighter) {
         AttackModule::clear_all(fighter.module_accessor);
         GroundModule::set_passable_check(fighter.module_accessor, true);
     }
-    frame(fighter.lua_state_agent, 22.0);
+    frame(fighter.lua_state_agent, 21.0);
     if macros::is_excute(fighter) {
-        macros::ATTACK(fighter, 0, 0, Hash40::new("body"), 6.0, 45, 100, 0, 0, 5.0, 0.0, 0.0, 0.0, None, None, None, 0.4, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, false, 0, 0.0, 50, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_S, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
-    }
-    frame(fighter.lua_state_agent, 28.0);
-    if macros::is_excute(fighter) {
+        AttackModule::clear_all(fighter.module_accessor);
         GroundModule::set_passable_check(fighter.module_accessor, false);
     }
     frame(fighter.lua_state_agent, 30.0);
@@ -211,6 +240,24 @@ unsafe fn metaknight_specialhiloop_eff(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 31.0);
     if macros::is_excute(fighter) {
         macros::EFFECT_OFF_KIND(fighter, Hash40::new("metaknight_sword"), false, false);
+    }
+}
+
+#[acmd_script(//SpecialHiLoop
+    agent = "metaknight", 
+    script = "sound_specialhiloop", 
+    category = ACMD_SOUND, 
+    low_priority )]
+unsafe fn sound_metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
+    frame(fighter.lua_state_agent, 1.0);
+    if macros::is_excute(fighter) {
+        macros::STOP_SE(fighter, Hash40::new("se_metaknight_dash_start"));
+        macros::PLAY_SE(fighter, Hash40::new("se_metaknight_special_h01"));
+    }
+    frame(fighter.lua_state_agent, 2.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_STATUS(fighter, Hash40::new("vc_metaknight_special_h01"));
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_h02"));
     }
 }
 
@@ -464,8 +511,8 @@ pub fn install() {
         metaknight_specialsend,
         metaknight_specialairsend,
         metaknight_specialairsfinish,
-        metaknight_specialhi, metaknight_specialhi_eff,
-        metaknight_specialhiloop, metaknight_specialhiloop_eff,
+        metaknight_specialhi, metaknight_specialhi_eff, expression_metaknight_specialhi, sound_metaknight_specialhi,
+        metaknight_specialhiloop, metaknight_specialhiloop_eff, sound_metaknight_specialhiloop,
         metaknight_speciallwsubf,
         metaknight_speciallwsubb,
         metaknight_speciallwsubairf,
