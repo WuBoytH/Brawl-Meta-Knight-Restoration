@@ -282,6 +282,16 @@ pub unsafe fn status_end_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     0.into()
 }
 
+#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE_END, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
+pub unsafe fn status_init_glide_end(fighter: &mut L2CFighterCommon) -> L2CValue {
+    let motion = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION) as *mut smash::app::KineticEnergy;
+    let lr = PostureModule::lr(fighter.module_accessor);
+
+    KineticUtility::reset_enable_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_STOP, *ENERGY_STOP_RESET_TYPE_FREE, Vector2f{x: 0.0, y: 0.0}, Vector3f{x: 0.0, y: 0.0, z: 0.0});
+    smash::app::lua_bind::KineticEnergy::reset_energy(motion, *ENERGY_STOP_RESET_TYPE_AIR, &Vector2f{x: 0.0 * lr, y: 0.0}, &Vector3f{x: 0.0, y: 0.0, z: 0.0}, fighter.module_accessor);
+    0.into()
+}
+
 fn nro_hook(info: &skyline::nro::NroInfo) {
     if info.name == "common" {
         skyline::install_hooks!(
@@ -296,6 +306,7 @@ pub fn install() {
     install_status_scripts!(
         status_init_glide_start,
         status_init_glide,
-        status_exec_glide
+        status_exec_glide,
+        status_init_glide_end
     );
 }
