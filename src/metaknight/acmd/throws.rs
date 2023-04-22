@@ -1,14 +1,4 @@
-use {
-    smash::{
-        lua2cpp::*,
-        phx::*,
-        app::{sv_animcmd::*, lua_bind::*, *},
-        lib::lua_const::*
-    },
-    smash_script::*,
-    smashline::*,
-    crate::singletons::*
-};
+use crate::imports::acmd_imports::*;
 
 #[acmd_script( agent = "metaknight", script = "game_throwf", category = ACMD_GAME )]
 unsafe fn metaknight_throwf(fighter: &mut L2CAgentBase) {
@@ -32,7 +22,7 @@ unsafe fn metaknight_throwf(fighter: &mut L2CAgentBase) {
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 6.0, 40, 100, 0, 10, 5.0, 0.0, 8.0, 10.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_normal"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_KICK, *ATTACK_REGION_KICK);
         AttackModule::set_catch_only_all(fighter.module_accessor, true, false);
         macros::CHECK_FINISH_CAMERA(fighter, 15, 2);
-        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(FighterCutInManager(), 1.5);
+        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(singletons::FighterCutInManager(), 1.5);
     }
     frame(fighter.lua_state_agent, 10.0);
     if macros::is_excute(fighter) {
@@ -72,8 +62,8 @@ unsafe fn metaknight_throwb(fighter: &mut L2CAgentBase) {
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 7.0, 45, 100, 0, 10, 4.0, 0.0, 5.5, 4.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
         AttackModule::set_catch_only_all(fighter.module_accessor, true, false);
         macros::CHECK_FINISH_CAMERA(fighter, 7, 0);
-        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(FighterCutInManager(), 1.5);
-        lua_bind::FighterCutInManager::set_throw_finish_offset(FighterCutInManager(), Vector3f{x:-7.0, y:0.0, z:0.0});
+        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(singletons::FighterCutInManager(), 1.5);
+        lua_bind::FighterCutInManager::set_throw_finish_offset(singletons::FighterCutInManager(), Vector3f{x:-7.0, y:0.0, z:0.0});
     }
     frame(fighter.lua_state_agent, 18.0);
     if macros::is_excute(fighter) {
@@ -109,7 +99,7 @@ unsafe fn metaknight_throwhi(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 45.0);
     if macros::is_excute(fighter) {
         macros::CHECK_FINISH_CAMERA(fighter, 3, 0);
-        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(FighterCutInManager(), 1.5);
+        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(singletons::FighterCutInManager(), 1.5);
     }
     frame(fighter.lua_state_agent, 46.0);
     if macros::is_excute(fighter) {
@@ -147,7 +137,7 @@ unsafe fn metaknight_throwlw(fighter: &mut L2CAgentBase) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 1.0, 270, 200, 0, 50, 7.0, 0.0, 4.0, 0.0, None, None, None, 0.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_rush"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_KICK, *ATTACK_REGION_KICK);
         AttackModule::set_catch_only_all(fighter.module_accessor, true, false);
         macros::CHECK_FINISH_CAMERA(fighter, 2, 0);
-        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(FighterCutInManager(), 1.5);
+        lua_bind::FighterCutInManager::set_throw_finish_zoom_rate(singletons::FighterCutInManager(), 1.5);
     }
     frame(fighter.lua_state_agent, 75.0);
     if macros::is_excute(fighter) {

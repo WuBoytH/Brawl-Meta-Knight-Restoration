@@ -6,9 +6,10 @@
 )]
 
 pub mod table_const;
+pub mod utility;
 mod common;
 mod metaknight;
-pub mod singletons;
+pub mod imports;
 
 #[skyline::main(name = "brawl_mk")]
 pub fn main() {

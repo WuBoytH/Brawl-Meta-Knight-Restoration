@@ -1,13 +1,6 @@
-use {
-    smash::{
-        lua2cpp::*,
-        phx::*,
-        app::lua_bind::*,
-        lib::{lua_const::*, L2CValue, L2CAgent}
-    },
-    smash_script::*,
-    smashline::*
-};
+#![allow(non_snake_case)]
+
+use crate::imports::status_imports::*;
 
 pub struct GlideParams {
     pub angle_max_up : f32, //#0 Max Upward Angle
@@ -18,7 +11,7 @@ pub struct GlideParams {
     pub base_speed : f32, //#5 Base Power/Speed
     pub speed_change : f32, //#6 Power Rate
     pub max_speed : f32, //#7 Maximum Speed
-    pub end_speed : f32, //#8 End Speed
+    pub end_speed : f32, //#8 End Speedc
     pub gravity_accel : f32, //#9 Gravity Acceleration
     pub gravity_speed : f32, //#10 Gravity Max Speed
     pub angle_extra : f32, //#11 Angle stuff but unknown what this is for

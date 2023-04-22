@@ -1,14 +1,4 @@
-use {
-    smash::{
-        lua2cpp::L2CAgentBase,
-        hash40,
-        phx::Hash40,
-        app::{lua_bind::*, sv_animcmd::*},
-        lib::lua_const::*
-    },
-    smash_script::*,
-    smashline::*
-};
+use crate::imports::acmd_imports::*;
 
 #[acmd_script( agent = "metaknight", script = "game_glidestart", category = ACMD_GAME )]
 unsafe fn metaknight_glidestart(fighter: &mut L2CAgentBase) {
@@ -30,12 +20,8 @@ unsafe fn metaknight_glidestart_eff(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script(//GlideStart
-    agent = "metaknight", 
-    script = "sound_glidestart", 
-    category = ACMD_SOUND, 
-    low_priority )]
-unsafe fn sound_metaknight_glidestart(fighter: &mut L2CAgentBase) {
+#[acmd_script( agent = "metaknight", script = "sound_glidestart", category = ACMD_SOUND, low_priority )]
+unsafe fn metaknight_glidestart_snd(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 7.0);
     if macros::is_excute(fighter) {
         macros::PLAY_SE(fighter, Hash40::new("se_metaknight_jump04"));
@@ -128,7 +114,7 @@ unsafe fn metaknight_glidelanding_snd(fighter: &mut L2CAgentBase) {
 
 pub fn install() {
     install_acmd_scripts!(
-        metaknight_glidestart, metaknight_glidestart_eff,
+        metaknight_glidestart, metaknight_glidestart_eff, metaknight_glidestart_snd,
         metaknight_glideattack, metaknight_glideattack_eff, metaknight_glideattack_snd,
         metaknight_glidelanding_eff, metaknight_glidelanding_snd, 
         sound_metaknight_glideend
