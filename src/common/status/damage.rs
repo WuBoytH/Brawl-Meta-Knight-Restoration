@@ -77,6 +77,14 @@ unsafe fn ftstatusuniqprocessdamage_init_common(fighter: &mut L2CFighterCommon) 
     }
 }
 
-pub fn install() {
+fn nro_hook(info: &skyline::nro::NroInfo) {
+    if info.name == "common" {
+        skyline::install_hooks!(
+            ftstatusuniqprocessdamage_init_common
+        );
+    }
+}
 
+pub fn install() {
+    skyline::nro::add_hook(nro_hook);
 }
