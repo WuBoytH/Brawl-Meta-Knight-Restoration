@@ -38,19 +38,25 @@ unsafe fn ftstatusuniqprocessdamage_init_common(fighter: &mut L2CFighterCommon) 
     sv_information::damage_log_value(fighter.lua_state_agent);
     let angle = fighter.pop_lua_stack(1).get_f32();
     let degrees = angle.to_degrees();
-    let speed_vector = sv_math::vec2_length(speed_vec_x, speed_vec_y);
     let fighter_kind = fighter.global_table[FIGHTER_KIND].get_i32();
-    let hit_entry_id = WorkModule::get_int(fighter.module_accessor, *FIGHTER_INSTANCE_WORK_ID_INT_SUCCEED_ATTACKER_ENTRY_ID) as u32;
-    let hit_by_kind = if let Some(object_id) = get_active_battle_object_id_from_entry_id(hit_entry_id) {
-        let object = get_battle_object_from_id(object_id);
-        let module_accessor = (*object).module_accessor;
-        utility::get_kind(&mut *module_accessor)
+    let attacker_ids = WorkModule::get_int(fighter.module_accessor, *FIGHTER_INSTANCE_WORK_ID_INT_SUCCEED_ATTACKER_ENTRY_ID);
+    let mut hit_by_mk = false;
+    for x in 0..8 {
+        if attacker_ids & (1 << x) == 0 {
+            continue;
+        }
+        if let Some(object_id) = get_active_battle_object_id_from_entry_id(x) {
+            let object = get_battle_object_from_id(object_id);
+            let module_accessor = (*object).module_accessor;
+            let kind = utility::get_kind(&mut *module_accessor);
+            if kind == *FIGHTER_KIND_METAKNIGHT {
+                hit_by_mk = true;
+                break;
+            }
+        }
     }
-    else {
-        0
-    };
-    if ![fighter_kind, hit_by_kind].contains(&*FIGHTER_KIND_METAKNIGHT) {
-        fighter.FighterStatusDamage_init_damage_speed_up(speed_vector.into(), degrees.into(), false.into());
+    if ![fighter_kind].contains(&*FIGHTER_KIND_METAKNIGHT) && !hit_by_mk {
+        fighter.FighterStatusDamage_init_damage_speed_up(reaction_frame.into(), degrees.into(), false.into());
     }
     let damage_cliff_no_catch_frame = WorkModule::get_param_int(fighter.module_accessor, hash40("common"), hash40("damage_cliff_no_catch_frame"));
     WorkModule::set_int(fighter.module_accessor, damage_cliff_no_catch_frame, *FIGHTER_INSTANCE_WORK_ID_INT_CLIFF_NO_CATCH_FRAME);
