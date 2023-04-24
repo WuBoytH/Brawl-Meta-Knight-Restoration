@@ -1,4 +1,5 @@
 use crate::imports::acmd_imports::*;
+use smash::hash40;
 
 #[acmd_script( agent = "metaknight", script = "game_catch", category = ACMD_GAME )]
 unsafe fn metaknight_catch(fighter: &mut L2CAgentBase) {
@@ -78,7 +79,7 @@ unsafe fn metaknight_catchattack(fighter: &mut L2CAgentBase) {
 unsafe fn metaknight_catchattack_expression(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         slope!(fighter, *MA_MSC_CMD_SLOPE_SLOPE, *SLOPE_STATUS_LR);
-        VisibilityModule::set_status_default_int64(fighter.module_accessor, Hash40::new("mantle"), Hash40::new("mantle_wing"));
+        VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_wing") as i64);
     }
     wait(fighter.lua_state_agent, 3.0);
     if macros::is_excute(fighter) {
@@ -86,7 +87,7 @@ unsafe fn metaknight_catchattack_expression(fighter: &mut L2CAgentBase) {
     }
     frame(fighter.lua_state_agent, 21.0);
     if macros::is_excute(fighter) {
-        VisibilityModule::set_status_default_int64(fighter.module_accessor, Hash40::new("mantle"), Hash40::new("mantle_normal"));
+        VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_normal") as i64);
     }
 }
 
