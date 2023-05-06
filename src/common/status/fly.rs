@@ -43,7 +43,7 @@ unsafe fn status_flysub(fighter: &mut L2CFighterCommon) {
     // Enable Gliding
     if [
         *FIGHTER_KIND_METAKNIGHT
-    ].contains(&fighter.global_table[FIGHTER_KIND].get_i32()) {
+    ].contains(&fighter.global_table[KIND].get_i32()) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_AVAILABLE_GLIDE);
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_ENABLE);
     }
