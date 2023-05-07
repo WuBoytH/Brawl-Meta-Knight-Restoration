@@ -75,7 +75,7 @@ unsafe fn ftstatusuniqprocessdamage_init_common(fighter: &mut L2CFighterCommon) 
         WorkModule::set_int(fighter.module_accessor, cursor_fly_frame, *FIGHTER_INSTANCE_WORK_ID_INT_CURSOR_FRAME);
     }
     let damage_fly_attack_frame = if fighter_kind == *FIGHTER_KIND_METAKNIGHT {
-        26
+        25
     }
     else {
         WorkModule::get_param_int(fighter.module_accessor, hash40("common"), hash40("damage_fly_attack_frame"))
