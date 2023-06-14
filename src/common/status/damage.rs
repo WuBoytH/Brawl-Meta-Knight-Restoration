@@ -126,7 +126,7 @@ unsafe fn subdamageflychkuniq(fighter: &mut L2CFighterCommon) -> L2CValue {
             let mk = fighter.global_table[KIND].get_i32() == *FIGHTER_KIND_METAKNIGHT;
             if WorkModule::get_int(fighter.module_accessor, *FIGHTER_STATUS_DAMAGE_WORK_INT_ATTACK_DISABLE_FRAME) <= 0 {
                 if mk
-                || WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("damage_fly_attack_speed")) <= damage_speed_length {
+                || damage_speed_length <= WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("damage_fly_attack_speed")) {
                     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_ITEM_THROW);
                     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_ATTACK);
                 }
@@ -134,7 +134,7 @@ unsafe fn subdamageflychkuniq(fighter: &mut L2CFighterCommon) -> L2CValue {
             if 1.0 < fighter.global_table[MOTION_FRAME].get_f32()
             && WorkModule::get_int(fighter.module_accessor, *FIGHTER_STATUS_DAMAGE_WORK_INT_ESCAPE_DISABLE_FRAME) <= 0 {
                 if mk
-                || WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("damage_fly_escape_speed")) <= damage_speed_length {
+                || damage_speed_length <= WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("damage_fly_escape_speed")) {
                     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_LASSO);
                     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_ESCAPE);
                 }
