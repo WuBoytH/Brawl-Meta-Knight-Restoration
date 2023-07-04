@@ -34,21 +34,18 @@ unsafe fn sub_glide_check(fighter: &mut L2CFighterCommon) -> L2CValue {
     }
     let jump_button_on_frame = WorkModule::get_int(fighter.module_accessor, *FIGHTER_STATUS_JUMP_WORK_INT_BUTTON_ON_FRAME);
     if jump_button_on_frame <= 20 {
-        if WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_INPUT) {
-            if WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_ENABLE) {
-                if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
-                    fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_START.into(), true.into());
-                    return true.into();
-                }
-            }
+        if WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_INPUT)
+        && WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_ENABLE)
+        && fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
+            fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_START.into(), true.into());
+            return true.into();
         }
     }
     else {
-        if WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_ENABLE) {
-            if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
-                fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_START.into(), true.into());
-                return true.into();
-            }
+        if WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_JUMP_FLAG_GLIDE_ENABLE)
+        && fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
+            fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_START.into(), true.into());
+            return true.into();
         }
     }
     false.into()

@@ -2,7 +2,10 @@
 #![feature(proc_macro_hygiene)]
 #![allow(
     unused_must_use,
-    unused_macros
+    unused_macros,
+    clippy::borrow_interior_mutable_const,
+    clippy::module_inception,
+    clippy::collapsible_else_if
 )]
 
 pub mod table_const;

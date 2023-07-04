@@ -66,11 +66,10 @@ unsafe fn status_fly_main(fighter: &mut L2CFighterCommon) -> L2CValue {
         FIGHTER_STATUS_KIND_FALL_AERIAL
     };
     
-    if MotionModule::is_end(fighter.module_accessor) {
-        if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
-            fighter.change_status(status.into(), false.into());
-            return 0.into();
-        }
+    if MotionModule::is_end(fighter.module_accessor)
+    && fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
+        fighter.change_status(status.into(), false.into());
+        return 0.into();
     }
 
     0.into()

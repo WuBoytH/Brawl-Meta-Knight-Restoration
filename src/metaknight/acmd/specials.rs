@@ -188,6 +188,11 @@ unsafe fn metaknight_specialhi_snd(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_h02"));
     }
+    frame(fighter.lua_state_agent, 29.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_glide_start"));
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_glide_loop"));
+    }
 }
 
 #[acmd_script( agent = "metaknight", script = "expression_specialhi", category = ACMD_EXPRESSION, low_priority )]
@@ -267,6 +272,11 @@ unsafe fn metaknight_specialhiloop_snd(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::PLAY_STATUS(fighter, Hash40::new("vc_metaknight_special_h01"));
         macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_h02"));
+    }
+    frame(fighter.lua_state_agent, 29.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_glide_start"));
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_glide_loop"));
     }
 }
 

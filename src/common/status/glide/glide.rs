@@ -26,56 +26,28 @@ pub struct GlideParams {
 }
 
 impl GlideParams {
-    pub fn get(fighter: &mut L2CFighterCommon) -> GlideParams {
-        let kind = fighter.global_table[0x2].get_i32();
-        if kind == *FIGHTER_KIND_METAKNIGHT {
-            GlideParams {
-                angle_max_up : 80.0,
-                angle_max_down : -70.0,
-                v_glide_start : 0.75,
-                gravity_start : 1.0,
-                speed_mul_start : 1.0,
-                base_speed : 1.7,
-                speed_change : 0.04,
-                max_speed : 2.2,
-                end_speed : 0.7,
-                gravity_accel : 0.03,
-                gravity_speed : 0.6,
-                angle_extra : 15.0,
-                angle_more_speed : -25.0,
-                down_speed_add : 0.03,
-                unknown : 0.15,
-                radial_stick : 0.25,
-                up_angle_accel : 0.55,
-                down_angle_accel : 0.75,
-                max_angle_speed : 7.0,
-                add_angle_speed : 1.0
-            }
-        }
-        else {
-            // if fighter kind not defined, just use Meta Knight's params.
-            GlideParams {
-                angle_max_up : 80.0,
-                angle_max_down : -70.0,
-                v_glide_start : 0.75,
-                gravity_start : 1.0,
-                speed_mul_start : 1.0,
-                base_speed : 1.7,
-                speed_change : 0.04,
-                max_speed : 2.2,
-                end_speed : 0.7,
-                gravity_accel : 0.03,
-                gravity_speed : 0.6,
-                angle_extra : 15.0,
-                angle_more_speed : -25.0,
-                down_speed_add : 0.03,
-                unknown : 0.15,
-                radial_stick : 0.25,
-                up_angle_accel : 0.55,
-                down_angle_accel : 0.75,
-                max_angle_speed : 7.0,
-                add_angle_speed : 1.0
-            }
+    pub fn get() -> GlideParams {
+        GlideParams {
+            angle_max_up : 80.0,
+            angle_max_down : -70.0,
+            v_glide_start : 0.75,
+            gravity_start : 1.0,
+            speed_mul_start : 1.0,
+            base_speed : 1.7,
+            speed_change : 0.04,
+            max_speed : 2.2,
+            end_speed : 0.7,
+            gravity_accel : 0.03,
+            gravity_speed : 0.6,
+            angle_extra : 15.0,
+            angle_more_speed : -25.0,
+            down_speed_add : 0.03,
+            unknown : 0.15,
+            radial_stick : 0.25,
+            up_angle_accel : 0.55,
+            down_angle_accel : 0.75,
+            max_angle_speed : 7.0,
+            add_angle_speed : 1.0
         }
     }
 }
@@ -99,7 +71,7 @@ mod KineticUtility {
 
 #[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE_START, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
 pub unsafe fn status_init_glide_start(fighter: &mut L2CFighterCommon) -> L2CValue {
-    let params = GlideParams::get(fighter);
+    let params = GlideParams::get();
     let gravity = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY) as *mut smash::app::KineticEnergy;
     let motion = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION) as *mut smash::app::KineticEnergy;
     let lr = PostureModule::lr(fighter.module_accessor);
@@ -124,7 +96,7 @@ pub unsafe fn status_glidestart(fighter: &mut L2CFighterCommon) -> L2CValue {
 pub unsafe fn status_init_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     let lr = PostureModule::lr(fighter.module_accessor);
     let sum_speed_y = KineticModule::get_sum_speed_y(fighter.module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
-    let params = GlideParams::get(fighter);
+    let params = GlideParams::get();
     WorkModule::set_float(fighter.module_accessor, params.base_speed, *FIGHTER_STATUS_GLIDE_WORK_FLOAT_POWER);
     WorkModule::set_float(fighter.module_accessor, -sum_speed_y, *FIGHTER_STATUS_GLIDE_WORK_FLOAT_GRAVITY);
     
@@ -149,7 +121,7 @@ pub unsafe fn status_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
 
 #[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE, condition = LUA_SCRIPT_STATUS_FUNC_EXEC_STATUS)]
 unsafe extern "C" fn status_exec_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
-    let params = GlideParams::get(fighter);
+    let params = GlideParams::get();
     let lr = PostureModule::lr(fighter.module_accessor);
     let _energy_stop = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_STOP);
     let mut angle = WorkModule::get_float(fighter.module_accessor, *FIGHTER_STATUS_GLIDE_WORK_FLOAT_ANGLE);
