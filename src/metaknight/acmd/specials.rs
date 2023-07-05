@@ -280,6 +280,40 @@ unsafe fn metaknight_specialhiloop_snd(fighter: &mut L2CAgentBase) {
     }
 }
 
+#[acmd_script( agent = "metaknight", script = "game_speciallwstart", category = ACMD_GAME, low_priority )]
+unsafe fn metaknight_speciallwstart(agent: &mut L2CAgentBase) {
+    if macros::is_excute(agent) {
+        ArticleModule::change_motion(agent.module_accessor, *FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE, Hash40::new("special_lw_start"), false, -1.0);
+    }
+    frame(agent.lua_state_agent, 13.0);
+    if macros::is_excute(agent) {
+        WorkModule::on_flag(agent.module_accessor, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_LW_START_FLAG_VIS_OFF);
+        KineticModule::change_kinetic(agent.module_accessor, *FIGHTER_KINETIC_TYPE_METAKNIGHT_SPECIAL_LW_FREE_MOVE);
+        JostleModule::set_status(agent.module_accessor, false);
+    }
+    frame(agent.lua_state_agent, 27.0);
+    if macros::is_excute(agent) {
+        WorkModule::on_flag(agent.module_accessor, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_LW_START_FLAG_ADVANCE_STATUS);
+    }
+}
+
+#[acmd_script( agent = "metaknight", script = "game_specialairlwstart", category = ACMD_GAME, low_priority )]
+unsafe fn metaknight_specialairlwstart(agent: &mut L2CAgentBase) {
+    if macros::is_excute(agent) {
+        ArticleModule::change_motion(agent.module_accessor, *FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE, Hash40::new("special_lw_start"), false, -1.0);
+    }
+    frame(agent.lua_state_agent, 13.0);
+    if macros::is_excute(agent) {
+        WorkModule::on_flag(agent.module_accessor, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_LW_START_FLAG_VIS_OFF);
+        KineticModule::change_kinetic(agent.module_accessor, *FIGHTER_KINETIC_TYPE_METAKNIGHT_SPECIAL_LW_FREE_MOVE);
+        JostleModule::set_status(agent.module_accessor, false);
+    }
+    frame(agent.lua_state_agent, 27.0);
+    if macros::is_excute(agent) {
+        WorkModule::on_flag(agent.module_accessor, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_LW_START_FLAG_ADVANCE_STATUS);
+    }
+}
+
 #[acmd_script( agent = "metaknight", script = "game_speciallwsubf", category = ACMD_GAME )]
 unsafe fn metaknight_speciallwsubf(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
@@ -532,6 +566,8 @@ pub fn install() {
         metaknight_specialairsfinish,
         metaknight_specialhi, metaknight_specialhi_eff, metaknight_specialhi_snd, metaknight_specialhi_exp,
         metaknight_specialhiloop, metaknight_specialhiloop_eff, metaknight_specialhiloop_snd,
+        metaknight_speciallwstart,
+        metaknight_specialairlwstart,
         metaknight_speciallwsubf,
         metaknight_speciallwsubb,
         metaknight_speciallwsubairf,
