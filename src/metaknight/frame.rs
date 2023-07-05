@@ -9,7 +9,7 @@ use smash::lua2cpp::L2CFighterCommon;
 fn frame_metaknight(fighter: &mut L2CFighterCommon) {
     unsafe {
         let status_kind = StatusModule::status_kind(fighter.module_accessor);
-
+        let situation_kind = StatusModule::situation_kind(fighter.module_accessor);
         if [
             *FIGHTER_STATUS_KIND_LANDING,
             *FIGHTER_STATUS_KIND_LANDING_LIGHT,
