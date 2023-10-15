@@ -1,5 +1,19 @@
 use crate::imports::acmd_imports::*;
 
+#[acmd_script(agent = "metaknight", script = "sound_specialnstart", category = ACMD_SOUND, low_priority )]
+unsafe fn metaknight_specialnstart_snd(fighter: &mut L2CAgentBase) {
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_n01"));
+    }
+}
+
+#[acmd_script(agent = "metaknight", script = "sound_specialairnstart", category = ACMD_SOUND, low_priority )]
+unsafe fn metaknight_specialairnstart_snd(fighter: &mut L2CAgentBase) {
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_n01"));
+    }
+}
+
 #[acmd_script( agent = "metaknight", script = "game_specialnspin", category = ACMD_GAME )]
 unsafe fn metaknight_specialnspin(fighter: &mut L2CAgentBase) {
         for _ in 0..i32::MAX {
@@ -37,6 +51,18 @@ unsafe fn metaknight_specialairnend(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 3.0);
     if macros::is_excute(fighter) {
         AttackModule::clear_all(fighter.module_accessor);
+    }
+}
+
+#[acmd_script(agent = "metaknight", script = "sound_specialsstart", category = ACMD_SOUND, low_priority )]
+unsafe fn metaknight_specialsstart_snd(fighter: &mut L2CAgentBase) {
+    frame(fighter.lua_state_agent, 3.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_s01"));
+    }
+    frame(fighter.lua_state_agent, 10.0);
+    if macros::is_excute(fighter) {
+        macros::PLAY_SE(fighter, Hash40::new("se_metaknight_jump01"));
     }
 }
 
@@ -248,6 +274,7 @@ unsafe fn metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
 unsafe fn metaknight_specialhiloop_eff(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_sword"), Hash40::new("haver"), 0.0, 0, 0, 0, 0, 0, 1, true);
+        macros::EFFECT(fighter, Hash40::new("sys_h_smoke_b"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, false);
     }
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
@@ -294,6 +321,20 @@ unsafe fn metaknight_speciallwstart(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 27.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_LW_START_FLAG_ADVANCE_STATUS);
+    }
+}
+
+#[acmd_script(agent = "metaknight", script = "effect_speciallwstart", category = ACMD_EFFECT, low_priority )]
+unsafe fn metaknight_speciallwstart_eff(fighter: &mut L2CAgentBase) {
+    frame(fighter.lua_state_agent, 2.0);
+    if macros::is_excute(fighter) {
+        macros::EFFECT_FOLLOW(fighter, Hash40::new("sys_whirlwind_r"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 0.8, true);
+        macros::LAST_EFFECT_SET_RATE(fighter, 2.0);
+    }
+    frame(fighter.lua_state_agent, 6.0);
+    if macros::is_excute(fighter) {
+        macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_mantle_start"), Hash40::new("top"), 0, 6, 0, 0, -90, 0, 1, true);
+        macros::LAST_EFFECT_SET_RATE(fighter, 1.5);
     }
 }
 
@@ -658,9 +699,12 @@ unsafe fn effect_metaknight_specialairlwf(agent: &mut L2CAgentBase) {
 
 pub fn install() {
     install_acmd_scripts!(
+        metaknight_specialnstart_snd,
+        metaknight_specialairnstart_snd,
         metaknight_specialnspin,
         metaknight_specialnend,
         metaknight_specialairnend,
+        metaknight_specialsstart_snd,
         metaknight_specialsdrill,
         metaknight_specialsend,
         metaknight_specialairsend,
@@ -668,6 +712,7 @@ pub fn install() {
         metaknight_specialhi, metaknight_specialhi_eff, metaknight_specialhi_snd, metaknight_specialhi_exp,
         metaknight_specialhiloop, metaknight_specialhiloop_eff, metaknight_specialhiloop_snd,
         metaknight_speciallwstart,
+        metaknight_speciallwstart_eff,
         metaknight_specialairlwstart,
         metaknight_speciallwsubf,
         metaknight_speciallwsubb,
