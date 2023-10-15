@@ -557,7 +557,7 @@ unsafe fn metaknight_specialairlwb(fighter: &mut L2CAgentBase) {
 
 #[acmd_script( agent = "metaknight", script = "effect_specialairlw", category = ACMD_EFFECT, low_priority )]
 unsafe fn effect_metaknight_specialairlw(agent: &mut L2CAgentBase) {
-    if get_value_float(agent.lua_state_agen, *SO_VAR_FLOAT_LR) < 0.0 {
+    if get_value_float(agent.lua_state_agent, *SO_VAR_FLOAT_LR) < 0.0 {
         if macros::is_excute(agent) {
             macros::EFFECT_FOLLOW(agent, Hash40::new("metaknight_mantle_air"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 1, true);
         }
@@ -625,7 +625,7 @@ unsafe fn effect_metaknight_specialairlwb(agent: &mut L2CAgentBase) {
 
 #[acmd_script( agent = "metaknight", script = "effect_specialairlwf", category = ACMD_EFFECT, low_priority )]
 unsafe fn effect_metaknight_specialairlwf(agent: &mut L2CAgentBase) {
-    if get_value_float(agent.lua_state_agen, *SO_VAR_FLOAT_LR) < 0.0 {
+    if get_value_float(agent.lua_state_agent, *SO_VAR_FLOAT_LR) < 0.0 {
         if macros::is_excute(agent) {
             macros::EFFECT_FOLLOW(agent, Hash40::new("metaknight_mantle_airf"), Hash40::new("top"), 0, 2.5, 14.5, 0, 0, 0, 1, true);
         }
