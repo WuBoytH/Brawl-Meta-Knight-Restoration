@@ -118,6 +118,67 @@ unsafe fn metaknight_attack100(fighter: &mut L2CAgentBase) {
     }
 }
 
+#[acmd_script( agent = "metaknight", script = "effect_attack100", category = ACMD_EFFECT, low_priority )]
+unsafe fn metaknight_attack100_eff(fighter: &mut L2CAgentBase) {
+    for _ in 0..i32::MAX {
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_sword"), Hash40::new("haver"), 0, 0, 0, 0, 0, 0, 1, true);
+        }
+        frame(fighter.lua_state_agent, 1.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 1, 6, -1, 20, 165, 105, 0.5, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.65, z: 0.7});
+        }
+        frame(fighter.lua_state_agent, 5.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 0, 7, 0, 90, 0, 25, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.8, z: 0.65});
+        }
+        frame(fighter.lua_state_agent, 8.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 1, 6.5, -1, -165, 20, -80, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.5, z: 0.75});
+        }
+        frame(fighter.lua_state_agent, 9.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 0, 6, 2, -205, 160, -145, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.7, z: 0.85});
+        }
+        frame(fighter.lua_state_agent, 12.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 2, 6, 1, 0, -155, 105, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.7, z: 0.7});
+        }
+        frame(fighter.lua_state_agent, 14.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 0, 7, 0, 90, 0, -45, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.85, z: 0.65});
+        }
+        frame(fighter.lua_state_agent, 18.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), 2, 4, 4, -165, 20, -95, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.5, z: 0.75});
+        }
+        frame(fighter.lua_state_agent, 19.0);
+        if macros::is_excute(fighter) {
+            macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_air_hi"), Hash40::new("top"), -2, 6, -4, -25, -30, -60, 1, true);
+            EffectModule::set_disable_render_offset_last(fighter.module_accessor);
+            EffectModule::set_scale_last(fighter.module_accessor, &Vector3f{x: 1.0, y: 0.5, z: 0.75});
+            macros::EFFECT_OFF_KIND(fighter, Hash40::new("metaknight_sword"), false, false);
+        }
+        fighter.clear_lua_stack();
+        lua_args!(fighter, 0);
+        wait_loop_clear(fighter.lua_state_agent);
+    }
+}
+
 #[acmd_script( agent = "metaknight", script = "game_attack100sub", category = ACMD_GAME )]
 unsafe fn metaknight_attack100sub(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
@@ -260,6 +321,7 @@ unsafe fn metaknight_attacklw3(fighter: &mut L2CAgentBase) {
 pub fn install() {
     install_acmd_scripts!(
         metaknight_attack100,
+        metaknight_attack100_eff,
         metaknight_attack100sub,
         metaknight_attack100end,
         metaknight_attackdash,
