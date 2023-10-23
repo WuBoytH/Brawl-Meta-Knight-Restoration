@@ -29,6 +29,10 @@ fn frame_metaknight(fighter: &mut L2CFighterCommon) {
             macros::STOP_SE(fighter, Hash40::new("se_metaknight_glide_start"));
             macros::STOP_SE(fighter, Hash40::new("se_metaknight_glide_loop"));
         };
+        if status_kind == *FIGHTER_STATUS_KIND_ATTACK_100 {
+            WorkModule::set_int(fighter.module_accessor, 0, *FIGHTER_STATUS_ATTACK_WORK_INT_100_HIT_NEAR_COUNT);
+            WorkModule::set_int(fighter.module_accessor, 0, *FIGHTER_STATUS_ATTACK_WORK_INT_100_HIT_NEAR_COUNT_CLIFF_STOP);
+        }
         WorkModule::set_int(fighter.module_accessor, 0, *FIGHTER_INSTANCE_WORK_ID_INT_CLIFF_COUNT);
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_INSTANCE_WORK_ID_FLAG_CLIFF_XLU);
         if [*FIGHTER_STATUS_KIND_SPECIAL_HI, *FIGHTER_METAKNIGHT_STATUS_KIND_SPECIAL_HI_LOOP].contains(&status_kind) {
