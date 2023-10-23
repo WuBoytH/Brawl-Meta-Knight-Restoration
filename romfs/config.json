@@ -1,0 +1,72 @@
+{
+    "new-dir-infos": [],
+    "new-dir-infos-base": {},
+    "share-to-vanilla": {},
+    "share-to-added": {},
+    "new-dir-files": {
+        "fighter/metaknight/c00": [
+            "fighter/metaknight/motion/body/c00/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c00/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c00/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c00/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c00/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c00/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c01": [
+            "fighter/metaknight/motion/body/c01/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c01/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c01/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c01/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c01/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c01/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c02": [
+            "fighter/metaknight/motion/body/c02/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c02/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c02/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c02/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c02/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c02/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c03": [
+            "fighter/metaknight/motion/body/c03/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c03/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c03/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c03/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c03/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c03/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c04": [
+            "fighter/metaknight/motion/body/c04/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c04/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c04/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c04/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c04/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c04/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c05": [
+            "fighter/metaknight/motion/body/c05/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c05/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c05/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c05/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c05/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c05/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c06": [
+            "fighter/metaknight/motion/body/c06/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c06/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c06/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c06/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c06/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c06/a07glidewing.nuanmb"
+        ],
+        "fighter/metaknight/c07": [
+            "fighter/metaknight/motion/body/c07/a07glideattack.nuanmb",
+            "fighter/metaknight/motion/body/c07/a07glidedirection.nuanmb",
+            "fighter/metaknight/motion/body/c07/a07glideend.nuanmb",
+            "fighter/metaknight/motion/body/c07/a07glidelanding.nuanmb",
+            "fighter/metaknight/motion/body/c07/a07glidestart.nuanmb",
+            "fighter/metaknight/motion/body/c07/a07glidewing.nuanmb"
+        ]
+    }
+}

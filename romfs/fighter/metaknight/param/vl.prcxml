@@ -1,118 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <struct>
-  <list hash="map_coll_data">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-  </list>
-  <list hash="jostle_map_coll_data">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-  </list>
-  <list hash="hit_data">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-    <hash40 index="5">dummy</hash40>
-    <hash40 index="6">dummy</hash40>
-    <hash40 index="7">dummy</hash40>
-    <hash40 index="8">dummy</hash40>
-  </list>
-  <list hash="hit_target">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-  </list>
-  <list hash="cliff_hang_data">
-    <hash40 index="0">dummy</hash40>
-  </list>
-  <list hash="virtual_node_data_hit">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-    <hash40 index="5">dummy</hash40>
-    <hash40 index="6">dummy</hash40>
-    <hash40 index="7">dummy</hash40>
-    <hash40 index="8">dummy</hash40>
-  </list>
-  <list hash="virtual_node_data_hit_flip">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-  </list>
-  <list hash="fly_speed_y">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-  </list>
-  <list hash="fly_turn_angle">
-    <hash40 index="0">dummy</hash40>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-    <hash40 index="4">dummy</hash40>
-    <hash40 index="5">dummy</hash40>
-    <hash40 index="6">dummy</hash40>
-    <hash40 index="7">dummy</hash40>
-    <hash40 index="8">dummy</hash40>
-    <hash40 index="9">dummy</hash40>
-    <hash40 index="10">dummy</hash40>
-    <hash40 index="11">dummy</hash40>
-  </list>
-  <list hash="fly_data">
-    <struct index="0">
-      <list hash="speed_y_table">
-        <hash40 index="0">dummy</hash40>
-        <hash40 index="1">dummy</hash40>
-        <hash40 index="2">dummy</hash40>
-        <hash40 index="3">dummy</hash40>
-        <hash40 index="4">dummy</hash40>
-      </list>
-      <list hash="turn_param">
-        <hash40 index="0">dummy</hash40>
-        <hash40 index="1">dummy</hash40>
-        <hash40 index="2">dummy</hash40>
-        <hash40 index="3">dummy</hash40>
-        <hash40 index="4">dummy</hash40>
-        <hash40 index="5">dummy</hash40>
-        <hash40 index="6">dummy</hash40>
-        <hash40 index="7">dummy</hash40>
-        <hash40 index="8">dummy</hash40>
-        <hash40 index="9">dummy</hash40>
-        <hash40 index="10">dummy</hash40>
-        <hash40 index="11">dummy</hash40>
-      </list>
-    </struct>
-  </list>
-  <list hash="param_mantle">
-    <hash40 index="0">dummy</hash40>
-  </list>
   <list hash="param_special_n">
     <struct index="0">
-      <float hash="ground_stable_speed_x">1.7</float>
+      <float hash="start_speed_y_add">1</float>
+      <float hash="ground_accel_x_stick_max">0.12</float>
+      <float hash="ground_stable_speed_x">2</float>
+      <float hash="air_accel_x_stick_max">0.1</float>
       <float hash="air_stable_speed_x">1.7</float>
+      <float hash="brake_x">0.008</float>
       <float hash="add_speed_stick">1</float>
-      <float hash="start_rot_speed">160</float>
-      <float hash="rot_limit">240</float>
-      <float hash="end_rot_speed">80</float>
+      <float hash="start_rot_speed">80</float>
+      <float hash="rot_brake">1.5</float>
+      <float hash="rot_limit">80</float>
+      <float hash="end_rot_speed">10</float>
       <int hash="button_unable_frame">70</int>
       <int hash="button_count_max">25</int>
+      <float hash="button_hop_limit_y">1.4</float>
       <float hash="button_rot_accel">16</float>
       <int hash="0x1686c61dd7">60</int>
+      <float hash="button_unable_rot_brake">2</float>
       <float hash="air_end_speed_x_mul">1</float>
       <float hash="air_end_max_speed_x">1</float>
+      <float hash="accel_y">-0.08</float>
     </struct>
     <hash40 index="1">dummy</hash40>
     <hash40 index="2">dummy</hash40>
@@ -120,8 +29,9 @@
   </list>
   <list hash="param_special_s">
     <struct index="0">
-      <float hash="rush_rot_speed_max">4</float>
+      <float hash="rush_rot_speed_max">3</float>
       <float hash="guard_speed_mul">1</float>
+      <float hash="crush_angle">361</float>
       <float hash="fall_x_mul">1</float>
     </struct>
     <hash40 index="1">dummy</hash40>
@@ -133,12 +43,6 @@
       <float hash="pass_mul">1</float>
       <float hash="air_pass_mul">1</float>
     </struct>
-    <hash40 index="1">dummy</hash40>
-    <hash40 index="2">dummy</hash40>
-    <hash40 index="3">dummy</hash40>
-  </list>
-  <list hash="param_special_lw">
-    <hash40 index="0">dummy</hash40>
     <hash40 index="1">dummy</hash40>
     <hash40 index="2">dummy</hash40>
     <hash40 index="3">dummy</hash40>
