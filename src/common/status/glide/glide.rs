@@ -119,6 +119,46 @@ pub unsafe fn status_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     fighter.sub_shift_status_main(L2CValue::Ptr(L2CFighterCommon_bind_address_call_status_Glide_Main as *const () as _))
 }
 
+#[skyline::hook(replace = L2CFighterCommon_status_Glide_Main)]
+pub unsafe fn status_glide_main(fighter: &mut L2CFighterCommon) -> L2CValue {
+    if fighter.sub_transition_group_check_air_cliff().get_bool() {
+        return 1.into();
+    }
+    if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_GROUND {
+        let frame = MotionModule::frame(fighter.module_accessor);
+        let hash_0x13f72f238b = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), 0x13f72f238b);
+        if hash_0x13f72f238b <= frame {
+            let sum_speed_length = KineticModule::get_sum_speed_length(fighter.module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
+            let hash_0x134df1e1b0 = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), 0x134df1e1b0);
+            if hash_0x134df1e1b0 <= sum_speed_length {
+                fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_LANDING.into(), false.into());
+                return 0.into();
+            }
+        }
+    }
+
+    if fighter.sub_transition_group_check_air_landing().get_bool() {
+        return 0.into();
+    }
+
+    if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_AIR {
+        if ControlModule::check_button_trigger(fighter.module_accessor, *CONTROL_PAD_BUTTON_JUMP)
+        || ControlModule::check_button_trigger(fighter.module_accessor, *CONTROL_PAD_BUTTON_SPECIAL)
+        || WorkModule::is_flag(fighter.module_accessor, *FIGHTER_STATUS_GLIDE_FLAG_STOP) {
+            fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_END.into(), false.into());
+            return 0.into();
+        }
+
+        if WorkModule::is_enable_transition_term(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_TERM_ID_CONT_GLIDE_ATTACK)
+        && ControlModule::check_button_trigger(fighter.module_accessor, *CONTROL_PAD_BUTTON_ATTACK) {
+            fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_ATTACK.into(), true.into());
+            return 0.into();
+        }
+    }
+
+    0.into()
+}
+
 #[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE, condition = LUA_SCRIPT_STATUS_FUNC_EXEC_STATUS)]
 unsafe extern "C" fn status_exec_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     let params = GlideParams::get();
@@ -261,7 +301,11 @@ fn nro_hook(info: &skyline::nro::NroInfo) {
     if info.name == "common" {
         skyline::install_hooks!(
             status_glidestart,
-            status_glide, bind_address_call_status_end_glide, status_end_glide
+
+            status_glide,
+            status_glide_main,
+            bind_address_call_status_end_glide,
+            status_end_glide
         );
     }
 }
