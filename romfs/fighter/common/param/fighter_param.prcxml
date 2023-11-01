@@ -37,6 +37,12 @@
       <float hash="air_speed_y_stable">1.39</float>
       <float hash="air_brake_y">0.0956</float>
       <float hash="dive_speed_y">1.946</float>
+      <float hash="weight">79</float>
+      <float hash="landing_attack_air_frame_n">15</float>
+      <float hash="landing_attack_air_frame_f">15</float>
+      <float hash="landing_attack_air_frame_b">12</float>
+      <float hash="landing_attack_air_frame_hi">12</float>
+      <float hash="landing_attack_air_frame_lw">15</float>
       <float hash="scale">0.95</float>
     </struct>
     <hash40 index="28">dummy</hash40>
