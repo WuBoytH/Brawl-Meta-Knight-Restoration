@@ -126,11 +126,11 @@ pub unsafe fn status_glide_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     }
     if fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_GROUND {
         let frame = MotionModule::frame(fighter.module_accessor);
-        let hash_0x13f72f238b = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), 0x13f72f238b);
-        if hash_0x13f72f238b <= frame {
+        let glide_landing_frame = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("glide_landing_frame"));
+        if glide_landing_frame <= frame {
             let sum_speed_length = KineticModule::get_sum_speed_length(fighter.module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
-            let hash_0x134df1e1b0 = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), 0x134df1e1b0);
-            if hash_0x134df1e1b0 <= sum_speed_length {
+            let glide_landing_speed = WorkModule::get_param_float(fighter.module_accessor, hash40("common"), hash40("glide_landing_speed"));
+            if glide_landing_speed <= sum_speed_length {
                 fighter.change_status(FIGHTER_STATUS_KIND_GLIDE_LANDING.into(), false.into());
                 return 0.into();
             }
