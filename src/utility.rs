@@ -42,7 +42,7 @@ pub fn get_battle_object_from_entry_id(entry_id: u32) -> Option<*mut BattleObjec
     }
 }
 
-#[skyline::from_offset(0x3ac540)]
+#[skyline::from_offset(0x3ac560)]
 pub fn get_battle_object_from_id(id: u32) -> *mut BattleObject;
 
 extern "C" {

@@ -17,7 +17,7 @@
       <int hash="button_count_max">25</int>
       <float hash="button_hop_limit_y">1.4</float>
       <float hash="button_rot_accel">16</float>
-      <int hash="0x1686c61dd7">60</int>
+      <int hash="remove_attack_id_frame">60</int>
       <float hash="button_unable_rot_brake">2</float>
       <float hash="air_end_speed_x_mul">1</float>
       <float hash="air_end_max_speed_x">1</float>
