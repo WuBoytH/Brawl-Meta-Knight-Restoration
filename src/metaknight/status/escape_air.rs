@@ -1,7 +1,6 @@
 use crate::imports::status_imports::*;
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_ESCAPE_AIR, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS )]
-unsafe fn metaknight_escape_air_init(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_escape_air_init(fighter: &mut L2CFighterCommon) -> L2CValue {
     let prev_status = fighter.global_table[PREV_STATUS_KIND].get_i32();
     if [
         *FIGHTER_STATUS_KIND_DAMAGE_FLY,
@@ -124,9 +123,10 @@ unsafe fn metaknight_escape_air_init(fighter: &mut L2CFighterCommon) -> L2CValue
 //     WorkModule::set_int(fighter.module_accessor, 0, *FIGHTER_INSTANCE_WORK_ID_INT_NO_WATER_INOUT_FRAME);
 // }
 
-pub fn install() {
-    install_status_scripts!(
+pub fn install(agent: &mut Agent) {
+    agent.status(
+        Init,
+        *FIGHTER_STATUS_KIND_ESCAPE_AIR,
         metaknight_escape_air_init,
-        // metaknight_escape_air_main
     );
 }

@@ -1,7 +1,6 @@
 use crate::imports::status_imports::*;
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_ESCAPE, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS )]
-unsafe fn metaknight_escape_init(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_escape_init(fighter: &mut L2CFighterCommon) -> L2CValue {
     sv_kinetic_energy!(
         clear_speed_ex,
         fighter,
@@ -24,8 +23,6 @@ unsafe fn metaknight_escape_init(fighter: &mut L2CFighterCommon) -> L2CValue {
     0.into()
 }
 
-pub fn install() {
-    install_status_scripts!(
-        metaknight_escape_init
-    );
+pub fn install(agent: &mut Agent) {
+    agent.status(Init, *FIGHTER_STATUS_KIND_ESCAPE, metaknight_escape_init);
 }

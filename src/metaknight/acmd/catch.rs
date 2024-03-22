@@ -1,8 +1,7 @@
 use crate::imports::acmd_imports::*;
 use smash::hash40;
 
-#[acmd_script( agent = "metaknight", script = "game_catch", category = ACMD_GAME )]
-unsafe fn metaknight_catch(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_catch(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 5.0);
     if macros::is_excute(fighter) {
         GrabModule::set_rebound(fighter.module_accessor, true);
@@ -21,8 +20,7 @@ unsafe fn metaknight_catch(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_catchdash", category = ACMD_GAME )]
-unsafe fn metaknight_catchdash(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_catchdash(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 7.0);
     if macros::is_excute(fighter) {
         GrabModule::set_rebound(fighter.module_accessor, true);
@@ -41,8 +39,7 @@ unsafe fn metaknight_catchdash(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_catchturn", category = ACMD_GAME )]
-unsafe fn metaknight_catchturn(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_catchturn(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 6.0);
     if macros::is_excute(fighter) {
         GrabModule::set_rebound(fighter.module_accessor, true);
@@ -62,8 +59,7 @@ unsafe fn metaknight_catchturn(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_catchattack", category = ACMD_GAME )]
-unsafe fn metaknight_catchattack(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_catchattack(fighter: &mut L2CAgentBase) {
     wait(fighter.lua_state_agent, 3.0);
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 3.0, 361, 100, 30, 0, 5.5, 0.0, 11.0, 9.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_S, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
@@ -75,8 +71,7 @@ unsafe fn metaknight_catchattack(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "expression_catchattack", category = ACMD_EXPRESSION, low_priority )]
-unsafe fn metaknight_catchattack_expression(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_catchattack_expression(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         slope!(fighter, *MA_MSC_CMD_SLOPE_SLOPE, *SLOPE_STATUS_LR);
         VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_wing") as i64);
@@ -91,12 +86,10 @@ unsafe fn metaknight_catchattack_expression(fighter: &mut L2CAgentBase) {
     }
 }
 
-pub fn install() {
-    install_acmd_scripts!(
-        metaknight_catch,
-        metaknight_catchdash,
-        metaknight_catchturn,
-        metaknight_catchattack,
-        metaknight_catchattack_expression
-    );
+pub fn install(agent: &mut Agent) {
+    agent.acmd("game_catch", metaknight_catch);
+    agent.acmd("game_catchdash", metaknight_catchdash);
+    agent.acmd("game_catchturn", metaknight_catchturn);
+    agent.acmd("game_catchattack", metaknight_catchattack);
+    agent.acmd("expression_catchattack", metaknight_catchattack_expression);
 }

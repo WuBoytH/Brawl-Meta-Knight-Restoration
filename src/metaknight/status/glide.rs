@@ -1,13 +1,11 @@
 use crate::imports::status_imports::*;
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_GLIDE_START, condition = LUA_SCRIPT_STATUS_FUNC_STATUS_MAIN )]
-unsafe fn metaknight_glide_start_main(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_glide_start_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     WorkModule::off_flag(fighter.module_accessor, *FIGHTER_METAKNIGHT_INSTANCE_WORK_ID_FLAG_SPECIAL_HI_GLIDE);
     fighter.status_GlideStart()
 }
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_GLIDE_END, condition = LUA_SCRIPT_STATUS_FUNC_STATUS_MAIN )]
-unsafe fn metaknight_glide_end_main(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_glide_end_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_LANDING);
     MotionModule::change_motion(fighter.module_accessor, Hash40::new("glide_end"), 0.0, 1.0, false, 0.0, false, false);
     if !StopModule::is_stop(fighter.module_accessor) {
@@ -39,8 +37,7 @@ unsafe fn metaknight_glide_end_main_loop(fighter: &mut L2CFighterCommon) -> L2CV
     0.into()
 }
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_GLIDE_ATTACK, condition = LUA_SCRIPT_STATUS_FUNC_STATUS_MAIN )]
-unsafe fn metaknight_glide_attack_main(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_glide_attack_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     WorkModule::enable_transition_term_group(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_GROUP_CHK_AIR_LANDING);
     MotionModule::change_motion(fighter.module_accessor, Hash40::new("glide_attack"), 0.0, 1.0, false, 0.0, false, false);
     if !StopModule::is_stop(fighter.module_accessor) {
@@ -69,10 +66,20 @@ unsafe fn metaknight_glide_attack_main_loop(fighter: &mut L2CFighterCommon) -> L
     0.into()
 }
 
-pub fn install() {
-    install_status_scripts!(
+pub fn install(agent: &mut Agent) {
+    agent.status(
+        Main,
+        *FIGHTER_STATUS_KIND_GLIDE_START,
         metaknight_glide_start_main,
+    );
+    agent.status(
+        Main,
+        *FIGHTER_STATUS_KIND_GLIDE_END,
         metaknight_glide_end_main,
-        metaknight_glide_attack_main
+    );
+    agent.status(
+        Main,
+        *FIGHTER_STATUS_KIND_GLIDE_ATTACK,
+        metaknight_glide_attack_main,
     );
 }

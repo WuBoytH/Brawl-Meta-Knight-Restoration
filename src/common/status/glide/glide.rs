@@ -69,8 +69,7 @@ mod KineticUtility {
     }
 }
 
-#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE_START, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
-pub unsafe fn status_init_glide_start(fighter: &mut L2CFighterCommon) -> L2CValue {
+pub unsafe extern "C" fn status_init_glide_start(fighter: &mut L2CFighterCommon) -> L2CValue {
     let params = GlideParams::get();
     let gravity = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_GRAVITY) as *mut smash::app::KineticEnergy;
     let motion = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION) as *mut smash::app::KineticEnergy;
@@ -92,8 +91,7 @@ pub unsafe fn status_glidestart(fighter: &mut L2CFighterCommon) -> L2CValue {
     fighter.sub_shift_status_main(L2CValue::Ptr(L2CFighterCommon_bind_address_call_status_GlideStart_Main as *const () as _))
 }
 
-#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
-pub unsafe fn status_init_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
+pub unsafe extern "C" fn status_init_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     let lr = PostureModule::lr(fighter.module_accessor);
     let sum_speed_y = KineticModule::get_sum_speed_y(fighter.module_accessor, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
     let params = GlideParams::get();
@@ -159,7 +157,6 @@ pub unsafe fn status_glide_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     0.into()
 }
 
-#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE, condition = LUA_SCRIPT_STATUS_FUNC_EXEC_STATUS)]
 unsafe extern "C" fn status_exec_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     let params = GlideParams::get();
     let lr = PostureModule::lr(fighter.module_accessor);
@@ -287,8 +284,7 @@ pub unsafe fn status_end_glide(fighter: &mut L2CFighterCommon) -> L2CValue {
     0.into()
 }
 
-#[common_status_script( status = FIGHTER_STATUS_KIND_GLIDE_END, condition = LUA_SCRIPT_STATUS_FUNC_INIT_STATUS)]
-pub unsafe fn status_init_glide_end(fighter: &mut L2CFighterCommon) -> L2CValue {
+pub unsafe extern "C" fn status_init_glide_end(fighter: &mut L2CFighterCommon) -> L2CValue {
     let motion = KineticModule::get_energy(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION) as *mut smash::app::KineticEnergy;
     let lr = PostureModule::lr(fighter.module_accessor);
 
@@ -312,10 +308,10 @@ fn nro_hook(info: &skyline::nro::NroInfo) {
 
 pub fn install() {
     skyline::nro::add_hook(nro_hook);
-    install_status_scripts!(
-        status_init_glide_start,
-        status_init_glide,
-        status_exec_glide,
-        status_init_glide_end
-    );
+    Agent::new("fighter")
+        .status(Init, *FIGHTER_STATUS_KIND_GLIDE_START, status_init_glide_start)
+        .status(Init, *FIGHTER_STATUS_KIND_GLIDE, status_init_glide)
+        .status(Exec, *FIGHTER_STATUS_KIND_GLIDE, status_exec_glide)
+        .status(Init, *FIGHTER_STATUS_KIND_GLIDE_END, status_init_glide_end)
+        .install();
 }

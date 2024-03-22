@@ -1,21 +1,18 @@
 use crate::imports::acmd_imports::*;
 
-#[acmd_script(agent = "metaknight", script = "sound_specialnstart", category = ACMD_SOUND, low_priority )]
-unsafe fn metaknight_specialnstart_snd(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialnstart_snd(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_n01"));
     }
 }
 
-#[acmd_script(agent = "metaknight", script = "sound_specialairnstart", category = ACMD_SOUND, low_priority )]
-unsafe fn metaknight_specialairnstart_snd(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairnstart_snd(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_n01"));
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialnspin", category = ACMD_GAME )]
-unsafe fn metaknight_specialnspin(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialnspin(fighter: &mut L2CAgentBase) {
         for _ in 0..i32::MAX {
         if macros::is_excute(fighter) {
             AttackModule::clear_all(fighter.module_accessor);
@@ -32,8 +29,7 @@ unsafe fn metaknight_specialnspin(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialnend", category = ACMD_GAME )]
-unsafe fn metaknight_specialnend(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialnend(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 3.0, 70, 170, 0, 35, 11.0, 0.0, 8.0, 0.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_THRU, *ATTACK_LR_CHECK_POS, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
     }
@@ -43,8 +39,7 @@ unsafe fn metaknight_specialnend(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairnend", category = ACMD_GAME )]
-unsafe fn metaknight_specialairnend(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairnend(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 3.0, 70, 170, 0, 35, 11.0, 0.0, 8.0, 0.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_THRU, *ATTACK_LR_CHECK_POS, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
     }
@@ -54,8 +49,7 @@ unsafe fn metaknight_specialairnend(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script(agent = "metaknight", script = "sound_specialsstart", category = ACMD_SOUND, low_priority )]
-unsafe fn metaknight_specialsstart_snd(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialsstart_snd(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 3.0);
     if macros::is_excute(fighter) {
         macros::PLAY_SE_REMAIN(fighter, Hash40::new("se_metaknight_special_s01"));
@@ -66,8 +60,7 @@ unsafe fn metaknight_specialsstart_snd(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialsdrill", category = ACMD_GAME )]
-unsafe fn metaknight_specialsdrill(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialsdrill(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 1.0, 363, 50, 45, 60, 4.0, 0.0, 14.0, 4.0, None, None, None, 1.0, 0.5, *ATTACK_SETOFF_KIND_THRU, *ATTACK_LR_CHECK_F, false, 0, 0.0, 6, false, false, false, false, true, *COLLISION_SITUATION_MASK_A, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_sting"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -82,8 +75,7 @@ unsafe fn metaknight_specialsdrill(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialsend", category = ACMD_GAME )]
-unsafe fn metaknight_specialsend(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialsend(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, true);
     }
@@ -99,16 +91,14 @@ unsafe fn metaknight_specialsend(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairsend", category = ACMD_GAME )]
-unsafe fn metaknight_specialairsend(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairsend(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::SET_SPEED_EX(fighter, -1.0, 2.1, *KINETIC_ENERGY_RESERVE_ATTRIBUTE_MAIN);
         notify_event_msc_cmd!(fighter, Hash40::new_raw(0x2127e37c07), *GROUND_CLIFF_CHECK_KIND_ALWAYS_BOTH_SIDES);
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairsfinish", category = ACMD_GAME )]
-unsafe fn metaknight_specialairsfinish(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairsfinish(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, true);
     }
@@ -125,8 +115,7 @@ unsafe fn metaknight_specialairsfinish(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialhi", category = ACMD_GAME )]
-unsafe fn metaknight_specialhi(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhi(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 5.0);
     if macros::is_excute(fighter) {
         HitModule::set_whole(fighter.module_accessor, HitStatus(*HIT_STATUS_XLU), 0);
@@ -177,8 +166,7 @@ unsafe fn metaknight_specialhi(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_specialhi", category = ACMD_EFFECT )]
-unsafe fn metaknight_specialhi_eff(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhi_eff(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 1.0);
     if macros::is_excute(fighter) {
         macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_sword"), Hash40::new("haver"), 0.0, 0, 0, 0, 0, 0, 1, true);
@@ -202,8 +190,7 @@ unsafe fn metaknight_specialhi_eff(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "sound_specialhi", category = ACMD_SOUND, low_priority )]
-unsafe fn metaknight_specialhi_snd(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhi_snd(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 7.0);
     if macros::is_excute(fighter) {
         macros::STOP_SE(fighter, Hash40::new("se_metaknight_dash_start"));
@@ -221,8 +208,7 @@ unsafe fn metaknight_specialhi_snd(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "expression_specialhi", category = ACMD_EXPRESSION, low_priority )]
-unsafe fn metaknight_specialhi_exp(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhi_exp(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         AttackModule::set_attack_reference_joint_id(fighter.module_accessor, Hash40::new("haver"), AttackDirectionAxis(*ATTACK_DIRECTION_Z), AttackDirectionAxis(*ATTACK_DIRECTION_Y), AttackDirectionAxis(*ATTACK_DIRECTION_X));
         VisibilityModule::set_status_default_int64(fighter.module_accessor, hash40("mantle") as i64, hash40("mantle_normal") as i64);
@@ -242,8 +228,7 @@ unsafe fn metaknight_specialhi_exp(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialhiloop", category = ACMD_GAME )]
-unsafe fn metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_SUPER_JUMP_PUNCH_FLAG_MOVE_TRANS);
         macros::ATTACK(fighter, 0, 0, Hash40::new("body"), 9.0, 30, 60, 0, 90, 7.0, 0.0, 0.0, 4.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, true, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -270,8 +255,7 @@ unsafe fn metaknight_specialhiloop(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_specialhiloop", category = ACMD_EFFECT )]
-unsafe fn metaknight_specialhiloop_eff(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhiloop_eff(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_sword"), Hash40::new("haver"), 0.0, 0, 0, 0, 0, 0, 1, true);
         macros::EFFECT(fighter, Hash40::new("sys_h_smoke_b"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, false);
@@ -288,8 +272,7 @@ unsafe fn metaknight_specialhiloop_eff(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "sound_specialhiloop", category = ACMD_SOUND, low_priority )]
-unsafe fn metaknight_specialhiloop_snd(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialhiloop_snd(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 1.0);
     if macros::is_excute(fighter) {
         macros::STOP_SE(fighter, Hash40::new("se_metaknight_dash_start"));
@@ -307,8 +290,7 @@ unsafe fn metaknight_specialhiloop_snd(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwstart", category = ACMD_GAME, low_priority )]
-unsafe fn metaknight_speciallwstart(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwstart(agent: &mut L2CAgentBase) {
     if macros::is_excute(agent) {
         ArticleModule::change_motion(agent.module_accessor, *FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE, Hash40::new("special_lw_start"), false, -1.0);
     }
@@ -324,8 +306,7 @@ unsafe fn metaknight_speciallwstart(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script(agent = "metaknight", script = "effect_speciallwstart", category = ACMD_EFFECT, low_priority )]
-unsafe fn metaknight_speciallwstart_eff(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwstart_eff(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
         macros::EFFECT_FOLLOW(fighter, Hash40::new("sys_whirlwind_r"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 0.8, true);
@@ -338,8 +319,7 @@ unsafe fn metaknight_speciallwstart_eff(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairlwstart", category = ACMD_GAME, low_priority )]
-unsafe fn metaknight_specialairlwstart(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairlwstart(agent: &mut L2CAgentBase) {
     if macros::is_excute(agent) {
         ArticleModule::change_motion(agent.module_accessor, *FIGHTER_METAKNIGHT_GENERATE_ARTICLE_MANTLE, Hash40::new("special_lw_start"), false, -1.0);
     }
@@ -355,8 +335,7 @@ unsafe fn metaknight_specialairlwstart(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwsubf", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwsubf(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwsubf(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 7.0, 0.0, 6.4, 0.0, None, None, None, 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 5.0, 0.0, 6.4, 14.0, Some(0.0), Some(6.4), Some(-2.0), 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -368,8 +347,7 @@ unsafe fn metaknight_speciallwsubf(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwsubb", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwsubb(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwsubb(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 7.0, 0.0, 6.4, 0.0, None, None, None, 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 5.0, 0.0, 6.4, -14.0, Some(0.0), Some(6.4), Some(2.0), 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -385,8 +363,7 @@ unsafe fn metaknight_speciallwsubb(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwsubairf", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwsubairf(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwsubairf(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 7.0, 0.0, 6.4, 0.0, None, None, None, 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 5.0, 0.0, 6.4, 20.0, Some(0.0), Some(6.4), Some(-2.0), 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -398,8 +375,7 @@ unsafe fn metaknight_speciallwsubairf(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwsubairb", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwsubairb(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwsubairb(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::ATTACK(fighter, 0, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 7.0, 0.0, 6.4, 0.0, None, None, None, 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_BODY);
         macros::ATTACK(fighter, 1, 0, Hash40::new("top"), 14.0, 60, 95, 0, 40, 5.0, 0.0, 6.4, -20.0, Some(0.0), Some(6.4), Some(2.0), 1.2, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_cutup"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_CUTUP, *ATTACK_REGION_SWORD);
@@ -415,8 +391,7 @@ unsafe fn metaknight_speciallwsubairb(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallw", category = ACMD_GAME )]
-unsafe fn metaknight_speciallw(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallw(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -445,8 +420,7 @@ unsafe fn metaknight_speciallw(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairlw", category = ACMD_GAME )]
-unsafe fn metaknight_specialairlw(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairlw(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -476,8 +450,7 @@ unsafe fn metaknight_specialairlw(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwf", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwf(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwf(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -505,8 +478,7 @@ unsafe fn metaknight_speciallwf(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairlwf", category = ACMD_GAME )]
-unsafe fn metaknight_specialairlwf(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairlwf(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -535,8 +507,7 @@ unsafe fn metaknight_specialairlwf(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_speciallwb", category = ACMD_GAME )]
-unsafe fn metaknight_speciallwb(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_speciallwb(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -565,8 +536,7 @@ unsafe fn metaknight_speciallwb(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_specialairlwb", category = ACMD_GAME )]
-unsafe fn metaknight_specialairlwb(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_specialairlwb(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         JostleModule::set_status(fighter.module_accessor, false);
     }
@@ -596,8 +566,7 @@ unsafe fn metaknight_specialairlwb(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_specialairlw", category = ACMD_EFFECT, low_priority )]
-unsafe fn effect_metaknight_specialairlw(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn effect_metaknight_specialairlw(agent: &mut L2CAgentBase) {
     if get_value_float(agent.lua_state_agent, *SO_VAR_FLOAT_LR) < 0.0 {
         if macros::is_excute(agent) {
             macros::EFFECT_FOLLOW(agent, Hash40::new("metaknight_mantle_air"), Hash40::new("top"), 0, 0, 0, 0, 0, 0, 1, true);
@@ -630,8 +599,7 @@ unsafe fn effect_metaknight_specialairlw(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_specialairlwb", category = ACMD_EFFECT, low_priority )]
-unsafe fn effect_metaknight_specialairlwb(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn effect_metaknight_specialairlwb(agent: &mut L2CAgentBase) {
     if get_value_float(agent.lua_state_agent, *SO_VAR_FLOAT_LR) < 0.0 {
         if macros::is_excute(agent) {
             macros::EFFECT_FOLLOW(agent, Hash40::new("metaknight_mantle_airb"), Hash40::new("top"), 0, -3.7, -17.5, 0, 0, 0, 1, true);
@@ -664,8 +632,7 @@ unsafe fn effect_metaknight_specialairlwb(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_specialairlwf", category = ACMD_EFFECT, low_priority )]
-unsafe fn effect_metaknight_specialairlwf(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn effect_metaknight_specialairlwf(agent: &mut L2CAgentBase) {
     if get_value_float(agent.lua_state_agent, *SO_VAR_FLOAT_LR) < 0.0 {
         if macros::is_excute(agent) {
             macros::EFFECT_FOLLOW(agent, Hash40::new("metaknight_mantle_airf"), Hash40::new("top"), 0, 2.5, 14.5, 0, 0, 0, 1, true);
@@ -697,35 +664,38 @@ unsafe fn effect_metaknight_specialairlwf(agent: &mut L2CAgentBase) {
     }
 }
 
-pub fn install() {
-    install_acmd_scripts!(
-        metaknight_specialnstart_snd,
-        metaknight_specialairnstart_snd,
-        metaknight_specialnspin,
-        metaknight_specialnend,
-        metaknight_specialairnend,
-        metaknight_specialsstart_snd,
-        metaknight_specialsdrill,
-        metaknight_specialsend,
-        metaknight_specialairsend,
-        metaknight_specialairsfinish,
-        metaknight_specialhi, metaknight_specialhi_eff, metaknight_specialhi_snd, metaknight_specialhi_exp,
-        metaknight_specialhiloop, metaknight_specialhiloop_eff, metaknight_specialhiloop_snd,
-        metaknight_speciallwstart,
-        metaknight_speciallwstart_eff,
-        metaknight_specialairlwstart,
-        metaknight_speciallwsubf,
-        metaknight_speciallwsubb,
-        metaknight_speciallwsubairf,
-        metaknight_speciallwsubairb,
-        metaknight_speciallw,
-        metaknight_specialairlw,
-        metaknight_speciallwf,
-        metaknight_specialairlwf,
-        metaknight_speciallwb,
-        metaknight_specialairlwb,
-        effect_metaknight_specialairlw,
-        effect_metaknight_specialairlwb,
-        effect_metaknight_specialairlwf
-    );
+pub fn install(agent: &mut Agent) {
+    agent.acmd("sound_specialnstart", metaknight_specialnstart_snd);
+    agent.acmd("sound_specialairnstart", metaknight_specialairnstart_snd);
+    agent.acmd("game_specialnspin", metaknight_specialnspin);
+    agent.acmd("game_specialnend", metaknight_specialnend);
+    agent.acmd("game_specialairnend", metaknight_specialairnend);
+    agent.acmd("sound_specialsstart", metaknight_specialsstart_snd);
+    agent.acmd("game_specialsdrill", metaknight_specialsdrill);
+    agent.acmd("game_specialsend", metaknight_specialsend);
+    agent.acmd("game_specialairsend", metaknight_specialairsend);
+    agent.acmd("game_specialairsfinish", metaknight_specialairsfinish);
+    agent.acmd("game_specialhi", metaknight_specialhi);
+    agent.acmd("effect_specialhi", metaknight_specialhi_eff);
+    agent.acmd("sound_specialhi", metaknight_specialhi_snd);
+    agent.acmd("expression_specialhi", metaknight_specialhi_exp);
+    agent.acmd("game_specialhiloop", metaknight_specialhiloop);
+    agent.acmd("effect_specialhiloop", metaknight_specialhiloop_eff);
+    agent.acmd("sound_specialhiloop", metaknight_specialhiloop_snd);
+    agent.acmd("game_speciallwstart", metaknight_speciallwstart);
+    agent.acmd("effect_speciallwstart", metaknight_speciallwstart_eff);
+    agent.acmd("game_specialairlwstart", metaknight_specialairlwstart);
+    agent.acmd("game_speciallwsubf", metaknight_speciallwsubf);
+    agent.acmd("game_speciallwsubb", metaknight_speciallwsubb);
+    agent.acmd("game_speciallwsubairf", metaknight_speciallwsubairf);
+    agent.acmd("game_speciallwsubairb", metaknight_speciallwsubairb);
+    agent.acmd("game_speciallw", metaknight_speciallw);
+    agent.acmd("game_specialairlw", metaknight_specialairlw);
+    agent.acmd("game_speciallwf", metaknight_speciallwf);
+    agent.acmd("game_specialairlwf", metaknight_specialairlwf);
+    agent.acmd("game_speciallwb", metaknight_speciallwb);
+    agent.acmd("game_specialairlwb", metaknight_specialairlwb);
+    agent.acmd("effect_specialairlw", effect_metaknight_specialairlw);
+    agent.acmd("effect_specialairlwb", effect_metaknight_specialairlwb);
+    agent.acmd("effect_specialairlwf", effect_metaknight_specialairlwf);
 }

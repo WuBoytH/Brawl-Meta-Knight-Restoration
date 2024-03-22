@@ -1,7 +1,6 @@
 use crate::imports::status_imports::*;
 
-#[status_script( agent = "metaknight", status = FIGHTER_STATUS_KIND_ATTACK_DASH, condition = LUA_SCRIPT_STATUS_FUNC_STATUS_MAIN )]
-unsafe fn metaknight_attack_dash_main(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn metaknight_attack_dash_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     MotionModule::change_motion(
         fighter.module_accessor,
         Hash40::new("attack_dash"),
@@ -109,8 +108,10 @@ unsafe fn metaknight_attack_dash_main_loop(fighter: &mut L2CFighterCommon) -> L2
     0.into()
 }
 
-pub fn install() {
-    install_status_scripts!(
-        metaknight_attack_dash_main
+pub fn install(agent: &mut Agent) {
+    agent.status(
+        Main,
+        *FIGHTER_STATUS_KIND_ATTACK_DASH,
+        metaknight_attack_dash_main,
     );
 }

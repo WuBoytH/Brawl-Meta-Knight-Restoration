@@ -1,7 +1,6 @@
 use crate::imports::acmd_imports::*;
 
-#[acmd_script( agent = "metaknight", script = "game_attackairn", category = ACMD_GAME )]
-unsafe fn metaknight_attackairn(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairn(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
     }
@@ -25,8 +24,7 @@ unsafe fn metaknight_attackairn(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attackairf", category = ACMD_GAME )]
-unsafe fn metaknight_attackairf(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairf(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 1.0);
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
@@ -70,8 +68,7 @@ unsafe fn metaknight_attackairf(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attackairb", category = ACMD_GAME )]
-unsafe fn metaknight_attackairb(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairb(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 1.0);
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
@@ -112,8 +109,7 @@ unsafe fn metaknight_attackairb(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attackairhi", category = ACMD_GAME )]
-unsafe fn metaknight_attackairhi(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairhi(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
     }
@@ -138,8 +134,7 @@ unsafe fn metaknight_attackairhi(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "effect_attackairhi", category = ACMD_EFFECT )]
-unsafe fn metaknight_attackairhi_eff(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairhi_eff(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         macros::EFFECT_FOLLOW(fighter, Hash40::new("metaknight_sword"), Hash40::new("haver"), 0, 0, 0, 0, 0, 0, 1, true);
     }
@@ -154,8 +149,7 @@ unsafe fn metaknight_attackairhi_eff(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attackairlw", category = ACMD_GAME )]
-unsafe fn metaknight_attackairlw(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackairlw(fighter: &mut L2CAgentBase) {
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
     }
@@ -176,12 +170,11 @@ unsafe fn metaknight_attackairlw(fighter: &mut L2CAgentBase) {
     }
 }
 
-pub fn install() {
-    install_acmd_scripts!(
-        metaknight_attackairn,
-        metaknight_attackairf,
-        metaknight_attackairb,
-        metaknight_attackairhi, metaknight_attackairhi_eff,
-        metaknight_attackairlw
-    );
+pub fn install(agent: &mut Agent) {
+    agent.acmd("game_attackairn", metaknight_attackairn);
+    agent.acmd("game_attackairf", metaknight_attackairf);
+    agent.acmd("game_attackairb", metaknight_attackairb);
+    agent.acmd("game_attackairhi", metaknight_attackairhi);
+    agent.acmd("effect_attackairhi", metaknight_attackairhi_eff);
+    agent.acmd("game_attackairlw", metaknight_attackairlw);
 }

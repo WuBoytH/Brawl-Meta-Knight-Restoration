@@ -85,3 +85,4 @@ pub const CHECK_ATTACK_S4_UNIQ:            i32 = 0x57;
 pub const CHECK_ATTACK_HI4_UNIQ:           i32 = 0x58;
 pub const CHECK_ATTACK_LW4_UNIQ:           i32 = 0x59;
 pub const SQUAT_COMMON_UNIQ:               i32 = 0x5A;
+pub fn install() {}

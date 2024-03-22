@@ -1,7 +1,6 @@
 use crate::imports::acmd_imports::*;
 
-#[acmd_script( agent = "metaknight", script = "game_attacks4", category = ACMD_GAME )]
-unsafe fn metaknight_attacks4(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attacks4(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 21.0);
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -19,8 +18,7 @@ unsafe fn metaknight_attacks4(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attackhi4", category = ACMD_GAME )]
-unsafe fn metaknight_attackhi4(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attackhi4(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 4.0);
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -60,8 +58,7 @@ unsafe fn metaknight_attackhi4(fighter: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "metaknight", script = "game_attacklw4", category = ACMD_GAME )]
-unsafe fn metaknight_attacklw4(fighter: &mut L2CAgentBase) {
+unsafe extern "C" fn metaknight_attacklw4(fighter: &mut L2CAgentBase) {
     frame(fighter.lua_state_agent, 2.0);
     if macros::is_excute(fighter) {
         WorkModule::on_flag(fighter.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -90,10 +87,8 @@ unsafe fn metaknight_attacklw4(fighter: &mut L2CAgentBase) {
     }
 }
 
-pub fn install() {
-    install_acmd_scripts!(
-        metaknight_attacks4,
-        metaknight_attackhi4,
-        metaknight_attacklw4
-    );
+pub fn install(agent: &mut Agent) {
+    agent.acmd("game_attacks4", metaknight_attacks4);
+    agent.acmd("game_attackhi4", metaknight_attackhi4);
+    agent.acmd("game_attacklw4", metaknight_attacklw4);
 }
