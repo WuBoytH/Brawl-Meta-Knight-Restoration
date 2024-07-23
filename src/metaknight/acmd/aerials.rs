@@ -171,10 +171,10 @@ unsafe extern "C" fn metaknight_attackairlw(fighter: &mut L2CAgentBase) {
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_attackairn", metaknight_attackairn);
-    agent.acmd("game_attackairf", metaknight_attackairf);
-    agent.acmd("game_attackairb", metaknight_attackairb);
-    agent.acmd("game_attackairhi", metaknight_attackairhi);
-    agent.acmd("effect_attackairhi", metaknight_attackairhi_eff);
-    agent.acmd("game_attackairlw", metaknight_attackairlw);
+    agent.acmd("game_attackairn", metaknight_attackairn, Priority::Default);
+    agent.acmd("game_attackairf", metaknight_attackairf, Priority::Default);
+    agent.acmd("game_attackairb", metaknight_attackairb, Priority::Default);
+    agent.acmd("game_attackairhi", metaknight_attackairhi, Priority::Default);
+    agent.acmd("effect_attackairhi", metaknight_attackairhi_eff, Priority::Default);
+    agent.acmd("game_attackairlw", metaknight_attackairlw, Priority::Default);
 }

@@ -87,9 +87,9 @@ unsafe extern "C" fn metaknight_catchattack_expression(fighter: &mut L2CAgentBas
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_catch", metaknight_catch);
-    agent.acmd("game_catchdash", metaknight_catchdash);
-    agent.acmd("game_catchturn", metaknight_catchturn);
-    agent.acmd("game_catchattack", metaknight_catchattack);
-    agent.acmd("expression_catchattack", metaknight_catchattack_expression);
+    agent.acmd("game_catch", metaknight_catch, Priority::Default);
+    agent.acmd("game_catchdash", metaknight_catchdash, Priority::Default);
+    agent.acmd("game_catchturn", metaknight_catchturn, Priority::Default);
+    agent.acmd("game_catchattack", metaknight_catchattack, Priority::Default);
+    agent.acmd("expression_catchattack", metaknight_catchattack_expression, Priority::Default);
 }

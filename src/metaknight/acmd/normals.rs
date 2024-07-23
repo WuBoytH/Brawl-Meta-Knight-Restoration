@@ -309,14 +309,14 @@ unsafe extern "C" fn metaknight_attacklw3(fighter: &mut L2CAgentBase) {
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_attack100", metaknight_attack100);
-    agent.acmd("effect_attack100", metaknight_attack100_eff);
-    agent.acmd("game_attack100sub", metaknight_attack100sub);
-    agent.acmd("game_attack100end", metaknight_attack100end);
-    agent.acmd("game_attackdash", metaknight_attackdash);
-    agent.acmd("game_attacks3", metaknight_attacks3);
-    agent.acmd("game_attacks3s2", metaknight_attacks3s2);
-    agent.acmd("game_attacks3s3", metaknight_attacks3s3);
-    agent.acmd("game_attackhi3", metaknight_attackhi3);
-    agent.acmd("game_attacklw3", metaknight_attacklw3);
+    agent.acmd("game_attack100", metaknight_attack100, Priority::Default);
+    agent.acmd("effect_attack100", metaknight_attack100_eff, Priority::Default);
+    agent.acmd("game_attack100sub", metaknight_attack100sub, Priority::Default);
+    agent.acmd("game_attack100end", metaknight_attack100end, Priority::Default);
+    agent.acmd("game_attackdash", metaknight_attackdash, Priority::Default);
+    agent.acmd("game_attacks3", metaknight_attacks3, Priority::Default);
+    agent.acmd("game_attacks3s2", metaknight_attacks3s2, Priority::Default);
+    agent.acmd("game_attacks3s3", metaknight_attacks3s3, Priority::Default);
+    agent.acmd("game_attackhi3", metaknight_attackhi3, Priority::Default);
+    agent.acmd("game_attacklw3", metaknight_attacklw3, Priority::Default);
 }

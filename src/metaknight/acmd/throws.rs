@@ -145,8 +145,8 @@ unsafe extern "C" fn metaknight_throwlw(fighter: &mut L2CAgentBase) {
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_throwf", metaknight_throwf);
-    agent.acmd("game_throwb", metaknight_throwb);
-    agent.acmd("game_throwhi", metaknight_throwhi);
-    agent.acmd("game_throwlw", metaknight_throwlw);
+    agent.acmd("game_throwf", metaknight_throwf, Priority::Default);
+    agent.acmd("game_throwb", metaknight_throwb, Priority::Default);
+    agent.acmd("game_throwhi", metaknight_throwhi, Priority::Default);
+    agent.acmd("game_throwlw", metaknight_throwlw, Priority::Default);
 }

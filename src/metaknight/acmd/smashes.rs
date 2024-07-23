@@ -88,7 +88,7 @@ unsafe extern "C" fn metaknight_attacklw4(fighter: &mut L2CAgentBase) {
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_attacks4", metaknight_attacks4);
-    agent.acmd("game_attackhi4", metaknight_attackhi4);
-    agent.acmd("game_attacklw4", metaknight_attacklw4);
+    agent.acmd("game_attacks4", metaknight_attacks4, Priority::Default);
+    agent.acmd("game_attackhi4", metaknight_attackhi4, Priority::Default);
+    agent.acmd("game_attacklw4", metaknight_attacklw4, Priority::Default);
 }

@@ -99,13 +99,13 @@ unsafe extern "C" fn metaknight_glidelanding_snd(fighter: &mut L2CAgentBase) {
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.acmd("game_glidestart", metaknight_glidestart);
-    agent.acmd("effect_glidestart", metaknight_glidestart_eff);
-    agent.acmd("sound_glidestart", metaknight_glidestart_snd);
-    agent.acmd("game_glideattack", metaknight_glideattack);
-    agent.acmd("effect_glideattack", metaknight_glideattack_eff);
-    agent.acmd("sound_glideattack", metaknight_glideattack_snd);
-    agent.acmd("effect_glidelanding", metaknight_glidelanding_eff);
-    agent.acmd("sound_glideend", sound_metaknight_glideend);
-    agent.acmd("sound_glidelanding", metaknight_glidelanding_snd);
+    agent.acmd("game_glidestart", metaknight_glidestart, Priority::Default);
+    agent.acmd("effect_glidestart", metaknight_glidestart_eff, Priority::Default);
+    agent.acmd("sound_glidestart", metaknight_glidestart_snd, Priority::Default);
+    agent.acmd("game_glideattack", metaknight_glideattack, Priority::Default);
+    agent.acmd("effect_glideattack", metaknight_glideattack_eff, Priority::Default);
+    agent.acmd("sound_glideattack", metaknight_glideattack_snd, Priority::Default);
+    agent.acmd("effect_glidelanding", metaknight_glidelanding_eff, Priority::Default);
+    agent.acmd("sound_glideend", sound_metaknight_glideend, Priority::Default);
+    agent.acmd("sound_glidelanding", metaknight_glidelanding_snd, Priority::Default);
 }
