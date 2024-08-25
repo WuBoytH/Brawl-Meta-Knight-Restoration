@@ -92,8 +92,6 @@ unsafe extern "C" fn metaknight_SpecialNSpin_Main_loop(fighter: &mut L2CFighterC
     return 0.into()
 }
 
-pub fn install() {
-    Agent::new("metaknight")
-    .status(Main, *FIGHTER_METAKNIGHT_STATUS_KIND_SPECIAL_N_SPIN, status_metaknight_SpecialNSpin_Main)
-    .install();
+pub fn install(agent: &mut Agent) {
+    agent.status(Main, *FIGHTER_METAKNIGHT_STATUS_KIND_SPECIAL_N_SPIN, status_metaknight_SpecialNSpin_Main);
 }
