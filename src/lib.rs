@@ -1,4 +1,3 @@
-#![feature(concat_idents)]
 #![feature(proc_macro_hygiene)]
 #![allow(
     unused_must_use,

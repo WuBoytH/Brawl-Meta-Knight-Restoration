@@ -1,6 +1,6 @@
 use crate::imports::status_imports::*;
 
-unsafe extern "C" fn status_metaknight_SpecialNSpin_Main(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn special_n_spin_main(fighter: &mut L2CFighterCommon) -> L2CValue {
     let button_unable_frame = WorkModule::get_param_int(fighter.module_accessor, hash40("param_special_n"), hash40("button_unable_frame"));
     let start_rot_speed = WorkModule::get_param_float(fighter.module_accessor, hash40("param_special_n"), hash40("start_rot_speed"));
     WorkModule::set_int(fighter.module_accessor, button_unable_frame, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_N_SPIN_WORK_INT_BUTTON_UNABLE_COUNTER);
@@ -20,7 +20,7 @@ unsafe extern "C" fn status_metaknight_SpecialNSpin_Main(fighter: &mut L2CFighte
         let speed_x = start_stick_speed * stick_x * lr;
         KineticModule::add_speed(fighter.module_accessor, &Vector3f{x: speed_x, y: 0.0, z: 0.0});
     }
-    fighter.sub_shift_status_main(L2CValue::Ptr(metaknight_SpecialNSpin_Main_loop as *const () as _))
+    fighter.sub_shift_status_main(L2CValue::Ptr(special_n_spin_main_loop as *const () as _))
 }
 
 unsafe extern "C" fn metaknight_special_n_spin_handler(fighter: &mut L2CFighterCommon) {
@@ -66,15 +66,15 @@ unsafe extern "C" fn metaknight_special_n_spin_sound_handler(fighter: &mut L2CFi
             let counter_value = ground_effect_counter - rate;
             WorkModule::set_float(fighter.module_accessor, counter_value, *FIGHTER_METAKNIGHT_STATUS_SPECIAL_N_SPIN_WORK_FLOAT_GROUND_EFFECT_COUNTER);
             if counter_value <= 0.0 {
-                let FIGHTER_PTR = fighter.global_table[FIGHTER].get_ptr() as *mut Fighter;
-                FighterSpecializer_Metaknight::set_special_n_ground_effect(FIGHTER_PTR);
+                let fighter_ptr = fighter.global_table[FIGHTER].get_ptr() as *mut Fighter;
+                FighterSpecializer_Metaknight::set_special_n_ground_effect(fighter_ptr);
             }
         }
     }
     0.into()
 }
 
-unsafe extern "C" fn metaknight_SpecialNSpin_Main_loop(fighter: &mut L2CFighterCommon) -> L2CValue {
+unsafe extern "C" fn special_n_spin_main_loop(fighter: &mut L2CFighterCommon) -> L2CValue {
     if fighter.sub_transition_group_check_air_cliff().get_bool() {
         return 1.into();
     }
@@ -93,5 +93,5 @@ unsafe extern "C" fn metaknight_SpecialNSpin_Main_loop(fighter: &mut L2CFighterC
 }
 
 pub fn install(agent: &mut Agent) {
-    agent.status(Main, *FIGHTER_METAKNIGHT_STATUS_KIND_SPECIAL_N_SPIN, status_metaknight_SpecialNSpin_Main);
+    agent.status(Main, *FIGHTER_METAKNIGHT_STATUS_KIND_SPECIAL_N_SPIN, special_n_spin_main);
 }

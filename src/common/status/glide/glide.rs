@@ -2,6 +2,7 @@
 
 use crate::imports::status_imports::*;
 
+#[allow(dead_code)]
 pub struct GlideParams {
     pub angle_max_up : f32, //#0 Max Upward Angle
     pub angle_max_down : f32, //#1 Max Downward Angle
